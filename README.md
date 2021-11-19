@@ -15,10 +15,13 @@ python3 findfiles.py -p <path to search>
   ![image](https://user-images.githubusercontent.com/84335647/142559198-e3b1868e-271a-48b2-b9d7-2bd41d946fb0.png)
 
   python3 findfiles.py -p / -n passwd
+  
   ![image](https://user-images.githubusercontent.com/84335647/142559439-7776dc8b-7eaf-472e-80f8-3ebb471db2d9.png)
 
   python3 findfiles -f search.txt
+  
   ![image](https://user-images.githubusercontent.com/84335647/142559522-2059c1f4-67df-4acc-a8a1-337c061b81bc.png)
 
   python3 findfiles.py -s 'wp-config'
+  
   ![image](https://user-images.githubusercontent.com/84335647/142559630-bcdff7a0-ac03-4b20-89a0-1e97b3ff55f8.png)
