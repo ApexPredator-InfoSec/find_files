@@ -6,7 +6,6 @@
 #Description: This script seraches for sensitive files that contain passwords, api keys, etc.
 import argparse
 import os
-import sys
 from colorama import init, Fore
 
 parser = argparse.ArgumentParser(prog='findfiles.py', usage='python3 findfiles.py \npython3 findfiles.py -n <name of file to search for> \npython3 findfiles.py -f <file contianing list of files to serach for> \npython3 findfiles.py-s <string to search for in file>') #build argument list
