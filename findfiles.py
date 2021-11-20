@@ -36,7 +36,7 @@ def find_string(path, string):
                 for line in string_search.readlines(): #iterate thru each line
                     if string in line: #check to if if the search string is present in the line
                         print(f'[+]Found {RED}%s{RESET} in {GREEN}%s{RESET}' %(string, os.path.join(root, file_to_search))) #print the full path to file containing the string
-                        print(f'[+]Printing line containing string: {GREEN}%s{RESET}' %line)
+                        print(f'[+]Printing line containing string: {GREEN}%s{RESET}' %line) #print the line that contained the serach string
 
 def main():
 
