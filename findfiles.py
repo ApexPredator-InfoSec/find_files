@@ -7,6 +7,7 @@
 import argparse
 import os
 import sys
+from colorama import init, Fore
 
 parser = argparse.ArgumentParser(prog='findfiles.py', usage='python3 findfiles.py \npython3 findfiles.py -n <name of file to search for> \npython3 findfiles.py -f <file contianing list of files to serach for> \npython3 findfiles.py-s <string to search for in file>') #build argument list
 parser.add_argument('-n', '--name', help='name of file to serach for', required=False)
@@ -15,22 +16,28 @@ parser.add_argument('-s','--string', help='string to search for in file', requir
 parser.add_argument('-p', '--path', help='path to start search from', required=False)
 args = parser.parse_args()
 
+init()
+GREEN = Fore.GREEN
+RESET = Fore.RESET
+RED = Fore.RED
+
 def find_file(path, file_name):
 
     for root, dir, files in os.walk(path): #walk directory path to build list of files
         if file_name in files: #check if file_name is in the list of files
             result = os.path.join(root, file_name) #build full file path to print
-            print("[+]Found potential sensitve file: %s" %result) #print the potential sensitive files that were found
+            print(f"[+]Found potential sensitve file: {GREEN}%s{RESET}" %result) #print the potential sensitive files that were found
 
 def find_string(path, string):
 
     for root, dir, files in os.walk(path): #walk the directory path to build list of files
         for file in files: #iterate thru each file in the list
             file_to_search = os.path.join(root, file) #set full path of each file
-            with open(file_to_search, 'r') as string_search: #open each file
+            with open(file_to_search, 'r', encoding='latin-1', errors='ignore') as string_search: #open each file
                 for line in string_search.readlines(): #iterate thru each line
                     if string in line: #check to if if the search string is present in the line
-                        print('[+]Found %s in %s' %(string, os.path.join(root, file_to_search))) #print the full path to file containing the string
+                        print(f'[+]Found {RED}%s in {GREEN}%s{RESET}' %(string, os.path.join(root, file_to_search))) #print the full path to file containing the string
+                        print(f'[+]Printing line containing string: {GREEN}%s{RESET}' %line)
 
 def main():
 
@@ -57,7 +64,7 @@ def main():
         string = args.string #set string to search for passed via arguments
         find_string(path, string)
 
-    if len(sys.argv) == 1:
+    if not args.string and not args.file and not args.name:
         find_file(path, 'id_rsa') #default files to serach for if no arguments passed
         find_file(path, '.env')
         find_file(path, 'manage.py')
